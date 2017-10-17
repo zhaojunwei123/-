@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			 panoramic:全景
+			 * */
+		@keyframes panoramic {
+		    to { background-position: 100% 0; }
+		}
+
+		.pic {
+			    width: 350px; height: 450px;
+			    background: url(11.jpg);
+			    background-size: auto 100%;     
+			    animation: panoramic 10s linear infinite alternate;
+			    animation-play-state: paused;
+			}
+		
+		.pic:hover, .pic:focus {
+		    animation-play-state: running;
+		}
+		/*
+		技术分析: 主要技术点是 animation-play-state: paused 暂停动画。 
+		 * */
+		</style>
+	</head>
+	<body>
+		<div class="pic"></div>
+	</body>
+</html>

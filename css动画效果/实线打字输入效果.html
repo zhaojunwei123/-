@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			 	1.等宽字体，然后加上ch这个单位，ch是表示'0'这个字符的宽度.
+				2.使用动画让元素宽度从0变到最大宽度。
+				3.利用steps(1)让每个关键帧的地方产生动画
+				Consolas, Monaco, monospace；字体
+			 * */
+			@keyframes typing {
+			    from { width: 0 }
+			}
+			@keyframes caret {
+			    50% { border-right-color: transparent; }
+			}
+
+			h1 {
+			    font: bold 200% Consolas, Monaco, monospace;
+			    width: 15ch;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    border-right: .05em solid;
+			    animation: typing 8s steps(15),
+			                caret 1s steps(1) infinite;
+			
+			}
+			
+			/*
+			 技术分析：CH宽度单位是每个字体长度，还是利用了 steps() 一次只显示一个特性，而不是滑动，
+			 可以把 step() 换成其他属性如：linear，ease等
+			 * */
+		</style>
+	</head>
+	<body>
+		<h1 class="pic">Hello,dear ones</div>
+	</body>
+</html>
