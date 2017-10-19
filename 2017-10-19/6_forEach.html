@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    
+    var arr = [1,2,3,4,5];
+
+    Array.prototype.forEachT = function(callback,that){
+        for(var i=0;i<this.length;i++){
+            callback.call(that,this[i],i,this);
+        }
+    }
+
+    arr.forEachT(function(e,i,all){
+        console.log(this);
+    },document);
+
+   
+
+</script>
+</body>
+</html>

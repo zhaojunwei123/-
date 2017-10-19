@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        只要使用alert那么它就会偷偷地调用toSting方法
+
+        toSting -> 把xx类型转成string类型
+
+        所有的类型都有toSting方法
+
+        obj -> [object Object]  第二个Object代表系统构造函数是谁
+
+        toSting()  还能转进制  -> var num = 10; num.toString(进制数)
+
+        
+    */
+    var arr = [1,2,3,4,5];
+    var obj = {name:'hehe'};
+
+    Array.prototype.toString = function(){
+        alert('呵呵，我把你改了');
+    }
+
+    /*
+        10  / 2   0
+
+        5 /   2   1
+        
+        2 /   2   0
+
+                  1
+
+        12   /  2    0
+        6    /  2    0
+        3   /   2    1
+        1   /   2    1
+
+
+    */
+    //alert(arr);
+    // console.log(arr.toString());
+    var num = 1100;  
+    console.log(num.toString(10));
+
+</script>
+</body>
+</html>

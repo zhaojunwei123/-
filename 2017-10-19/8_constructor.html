@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        constructor:
+            实例化对象上的一个属性：
+                指向构造函数。
+
+        *** 不过不准确，容易被修改。        
+    */
+    
+    // class Teacher {
+    //     constructor(name,age){
+    //         this.name = name;
+    //         this.age = age;
+    //     }
+    // }
+
+    function Teacher(name,age){
+        this.name = name;
+        this.age = age;
+    }
+
+    // Teacher.prototype.say = function(){
+    //     alert(this.name);
+    // }
+    
+    Teacher.prototype = {
+        constructor:Teacher,
+        say:function(){
+            alert(this.name);
+        }
+    }
+  
+    var t = new Teacher('尹小胖',78);
+    t.say();
+    console.log(t.constructor);
+
+    // var arr = [1,2,3,4];
+
+    // console.log(arr.constructor == Array);
+
+    /*
+        var obj = {name:123}  //obj = {}
+
+        obj = {name:321}
+
+        console.log(obj.name)
+
+    */
+
+    
+
+    
+
+    
+
+</script>
+</body>
+</html>

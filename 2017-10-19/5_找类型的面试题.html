@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+<script>
+    //判断下面的数据类型为数组。
+    /*
+        !!arr.push
+    */
+    var arr = '123'//[1,2,3,4];
+    //Array.prototype.toString //我的车（没有车灯）
+    var s = Object.prototype.toString;//他的车（有车灯）
+
+    /*
+        fn = function(){alert('1')};
+        fn.call()  1
+
+        Object.prototype.toString = function(){ [object Object] }
+
+        Object.call(arr)  [object Object]
+
+        [object Array]
+
+    */
+
+
+    //console.log(Object.prototype.toString.call(arr) === '[object Array]');
+
+    // console.log(!!arr.push);
+
+
+    var lis = document.getElementsByTagName('li');
+    lis = Array.prototype.slice.call(lis);
+
+    lis.forEach((ele,i)=>{
+        ele.onclick = function(){
+            alert(i);
+        }
+    });
+
+    // var arr2 = [1,2,3,4];
+
+    // console.log(arr2.slice(1))
+
+    // console.log(arr2)
+
+
+</script>
+</body>
+</html>

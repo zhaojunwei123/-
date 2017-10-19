@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+       *** obj.hasOwnProperty('属性名');
+            是不是自身的属性:函数内的。
+    */
+
+    // function Fn(name){
+    //     this.name = name;
+    //     this.sayT = function(){
+
+    //     }
+    // }
+
+
+    // Fn.prototype.say = 10;
+
+    class Fn {
+        constructor(name){
+            this.name = name;
+        }
+        say(){
+            console.log(this); //Fn{}
+            function fn2(){
+                console.log(this); //undefined
+            }
+            new fn2();
+        }
+    }
+
+
+    var f = new Fn('田甜');
+    f.say();
+
+   // console.log(f.hasOwnProperty('name'));
+
+    //严格模式下this为undefined
+    // function Fn(){
+    //     "use strict"
+    //     var a = 10;
+    //     console.log(a); //undefined
+    // }
+
+    // Fn();
+
+
+
+</script>
+</body>
+</html>

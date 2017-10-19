@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .demol{
+        width: 50px;
+        height: 300px;
+        line-height: 50px;
+        text-align: center;
+        color:red;
+    }
+    .demol:before{
+        background: url("c.jpg") no-repeat;
+        background-size: cover;
+        width: 500px;
+        height: 300px;
+        content: "";
+        position: absolute;
+        left:0;
+        top:0;
+        z-index: -1;
+        filter: blur(10px);
+    }
+    
+</style>
+<body>
+    
+
+    <div class="demol">活动经费结课的很方便</div>
+    
+    <script src="index.js"></script>
+</body>
+</html>

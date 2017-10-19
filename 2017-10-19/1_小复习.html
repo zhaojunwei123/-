@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+         
+    */
+
+    // var fn = () => 1;
+    // document.onclick = function(){
+    //     var fn = () => {
+    //         alert(this);
+    //     }
+    //     fn();
+    // };
+
+    // function fn(){
+    //     console.log(this); //window
+    // }
+    // fn();
+
+    // function fn(){
+    //     console.log(this); 
+    // }
+    // new fn;
+
+    // function fn(){
+    //     var fn2 = () => console.log(this); //fn{}
+    //     fn2(); 
+    // }
+    // new fn;
+
+    // function fn(){
+    //     var fn2 = function(){console.log(this)};//window 
+    //     fn2();
+    // }
+    // new fn;
+
+    // function fn(){
+    //     var fn2 = function(){
+    //         console.log(this);//fn2{}
+    //         var fn3 = () => console.log(this);//fn2{}
+    //         fn3();
+    //     }; 
+    //    new fn2;
+    // }
+    // new fn;
+    function fn(){
+        var fn2 = function(){
+            console.log(this);//window
+            var fn3 = () => {
+                console.log(this);//fn3{}
+                function fn4(){
+                    console.log(this);
+                }
+            }
+            new fn3(); //箭头函数不能new不然要报错。
+        }; 
+        return fn2;
+    }
+    fn()();
+
+ 
+    
+    
+</script>
+</body>
+</html>

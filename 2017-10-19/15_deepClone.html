@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        深度克隆 -> deepClone
+
+        因为一次遍历中如果对象里面的内容为简单类型，那么直接赋值即可（克隆成功）
+        但是，如果在这个对象中还有对象类型，那么这个时候赋值即赋址。
+        那这个时候碰到了对象类型就再遍历，遍历到全是简单类型为止,保证
+        所有的赋值都是简单类型的赋值了，就达到了深度克隆的目的。
+    
+        document.addEvent('就写上滚',fn);
+    */
+    var arr = [1,2,3,4,[6,{name:'dq'},function fn2(){}]];
+
+    // function deepClone(obj){
+    //     var o = [];
+    //     for(var i=0;i<obj.length;i++){
+    //         if(typeof obj[i] == 'object'){
+    //             o[i] = deepClone(obj[i]);
+    //         }else{
+    //             o[i] = obj[i];
+    //         }
+    //     }
+    //     return o;
+    // }
+
+    function deepClone(obj){
+        var toS = Object.prototype.toString;
+        var o = toS.call(obj) === '[object Object]'?{}:[];
+        for(var attr in obj){
+            if(typeof obj[attr] == 'object'){
+                o[attr] = deepClone(obj[attr]);
+            }else{
+                o[attr] = obj[attr];
+            }
+        }
+        return o;
+    }
+
+    var arr2 = JSON.parse(JSON.stringify(arr));//deepClone(arr);
+
+    arr2[4].push(5);
+
+    console.log(arr2);
+
+
+
+
+    // var arr2 = [];
+
+    // for(var i=0;i<arr.length;i++){
+    //     arr2[i] = arr[i];
+    // }
+    
+
+
+</script>
+</body>
+</html>

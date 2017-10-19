@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+       修改this指向的方法  
+        call:
+            函数身上的一个方法，有若干的参数
+
+            第一个参数：
+                改变this指向
+
+            第二个往后的参数：
+                就是实参的个数。
+
+        apply:
+            只有2个参数
+
+            第一个参数：
+                改变this指向
+
+            第二个参数:
+                数组
+
+        bind:
+            修正this指向但是不直接调用，它会返回一个新的函数
+            当调用新函数的时候会调出修改之后的this
+
+            若干个参数:
+                第一个参数：
+                    改变this指向
+                第二个往后的参数：
+                    就是实参的个数。
+
+    */
+    function fn(a,b,c,d,e){
+        alert(a+b);
+    }
+
+    var f = fn.bind(document);
+
+    f();
+    console.log(f);
+
+   
+
+    //fn.call(document,1,2,3,4,5);
+
+    // fn.apply(document,[1,2,3,4,5]);
+
+    // console.dir(fn)
+</script>
+</body>
+</html>
