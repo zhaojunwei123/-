@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+#box2{
+    width:100px;
+    height: 100px;
+    background: skyblue;
+    position: absolute;
+    top:0;
+    left:100px;
+}
+</style>
+</head>
+<body>
+    sdsadsadjhsjdhsa
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    function Drag(id){
+        this.box = document.getElementById(id);
+        this.disX = 0;
+        this.disY = 0;
+    }
+
+    Drag.prototype.init = function(){
+        var _this = this;
+        this.box.addEventListener('mousedown',down);
+        function down(ev){
+            _this.down(ev);
+        }
+    }
+
+    Drag.prototype.down = function(ev){
+        var _this = this;
+        this.disX = ev.clientX - this.box.offsetLeft;
+        this.disY = ev.clientY - this.box.offsetTop;
+        var move = function(ev){
+            _this.move(ev);
+        }
+        var up = function(ev){
+            _this.up(ev,move,up);
+        }
+        document.addEventListener('mousemove',move);
+        document.addEventListener('mouseup',up);
+
+        ev.preventDefault();
+    }
+
+    Drag.prototype.move = function(ev){
+        this.box.style.left = ev.clientX - this.disX + 'px';
+        this.box.style.top = ev.clientY - this.disY + 'px';
+    }
+    Drag.prototype.up = function(ev,move,up){
+        document.removeEventListener('mousemove',move);
+        document.removeEventListener('mouseup',up);
+    }
+
+    //调用父类实现（改变this指向）属性继承。
+    function Drag2(id){
+        Drag.call(this,id);
+    }
+
+    // for(var attr in Drag.prototype){
+    //     if(Drag.prototype.hasOwnProperty(attr)){
+    //         Drag2.prototype[attr] = Drag.prototype[attr];
+    //     }
+    // }
+
+    /*
+        p.__proto__ -> Paohui.prototype
+    */
+    function Paohui(){}
+    Paohui.prototype = Drag.prototype;
+    var p = new Paohui;
+    Drag2.prototype = p;
+
+    Drag2.prototype.move = function(ev){
+        var l = ev.clientX - this.disX;
+        if(l<0)l=0;
+        this.box.style.left = l  + 'px';
+        this.box.style.top = ev.clientY - this.disY + 'px';
+    }
+    var d2 = new Drag2('box2');
+    d2.init();
+
+
+
+
+
+
+
+    var d = new Drag('box');
+
+    d.init();
+
+
+</script>
+</body>
+</html>

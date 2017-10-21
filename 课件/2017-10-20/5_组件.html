@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script src="myTabs.js"></script>
+<script>
+    /*
+        组件:
+            为了方便复用（造轮子）
+    */
+    var t = new Tabs('box');
+    t.init({
+        btns:['社会','科技','财经'],
+        content:['19大','无人驾驶','睁开眼1个亿'],
+        events:'onmouseover'
+    });
+
+</script>
+</body>
+</html>

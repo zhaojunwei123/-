@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        
+        采集 addEvent(document,'事件名',事件函数)
+
+       .zdy = {
+
+        }
+
+    */
+    function addEvent(obj,evName,fn){
+        obj.zdy = obj.zdy || {};  //obj.zdy = {}
+
+        // obj.zdy = {click:[]}
+        obj.zdy[evName] = obj.zdy[evName] || [];
+
+        // obj.zdy = {click:[function(){}]}
+        obj.zdy[evName].push(fn);
+    }
+    function trigger(obj,evName){
+        if(!obj.zdy[evName])return;
+        obj.zdy[evName].forEach((el,i)=>{
+            el.call(obj);
+        });
+    }
+
+    addEvent(document,'长按',function(){
+        alert('别长按了');
+    });
+    
+    document.timer = null;
+    document.onmousedown = function(){
+        var d = new Date;
+        document.timer = setInterval (function(){
+            var d2 = new Date;
+            if(Math.ceil(d2 - d)/1000 >= 2){
+                trigger(document,'长按');
+                clearInterval(document.timer);
+            }
+       });
+       document.onmouseup = function(){
+            clearInterval(document.timer);
+       }
+    }
+
+
+
+</script>
+</body>
+</html>
