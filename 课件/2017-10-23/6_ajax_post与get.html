@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    <!-- <form action="php/get.php" method="get"> -->
+        姓名:<input type="text" name="user" id="userId"/><span id="span"></span>
+    <!-- </form> -->
+<script>
+
+    /*
+        get方式（安全性不是太高的，体积较小的）：
+            通过地址栏进行数据的传输。.php?user=leo&password=123456
+            ?user=leo&password=12345（open('get',url+字段拼接)）
+            相对不安全
+            体积较小，具体能传输多少，跟浏览器限制有关系
+            在写中文的时候，IE下会把中文转成URI编码，会引起报错。
+            通过encodeURI(转一下);
+            
+
+        post（跟用户信息相关的、较大体积的）
+            服务器进行传输(拼接的字段要在send中)
+            理论上来说是没有大小限制的（后端会做限制）
+            相对就安全一些
+            在send前加请求头
+            ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+    
+    */
+    const userId = document.getElementById('userId');
+    userId.onblur = function(){
+        
+        const ajax = new XMLHttpRequest();
+        //1.请求的方式   2.url
+        // ajax.open('get','php/get.php?user='+userId.value);
+
+        // ajax.send();
+
+        ajax.open('post','php/post.php');
+        
+        ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        ajax.send('user='+userId.value);
+        
+        ajax.onload = function(){
+            // alert(ajax.status);
+            span.innerHTML = ajax.responseText;
+            // console.log(ajax.responseText);
+        }
+    }
+    
+
+</script>
+</body>
+</html>

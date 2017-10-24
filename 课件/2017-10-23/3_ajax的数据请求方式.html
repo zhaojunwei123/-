@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    <!-- <form action="php/get.php" method="get"> -->
+        姓名:<input type="text" name="user" id="userId"/>
+        密码:<input type="password" name="password"/>
+        <input type="button" value="提交">  
+    <!-- </form> -->
+<script src="ajax_1.0.js"></script>
+<script>
+
+    const userId = document.getElementById('userId');
+    userId.onblur = function(){
+        /*
+            {
+                url:'php/get.php',
+                data:{
+                   user: serId.value
+                },
+                success:function(data){
+                    console.log(data);
+                }
+            }
+
+            1.url是谁？
+            2.要给后端传什么？
+            3.成功了以后数据长什么样子？
+        */
+        ajax({
+            url:'php/get.php',
+            data:{
+                user:userId.value
+            },
+            success:function(data){
+                //'xxx(用户名可以注册)'
+                data.replace(/(\((\D+)\))/,function($0,$1,$2){
+                    // console.log($2);
+                    data = $2;
+                });
+
+                switch(data){
+                    case '用户名可以注册':
+                        userId.className = 'ok';
+                    break;
+                    case '用户名已经被注册了':
+                        userId.className = 'error';
+                    break;
+                    default:
+                        userId.className = 'error';
+                    break;
+                }
+            }
+        });
+    }
+    
+
+</script>
+</body>
+</html>

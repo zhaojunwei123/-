@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    <!-- <form action="php/get.php" method="get"> -->
+        姓名:<input type="text" name="user" id="userId"/> 
+    <!-- </form> -->
+<script>
+    const userId = document.getElementById('userId');
+    userId.onblur = function(){
+       /*
+        打电话流程:
+           1. 买个电话
+
+           2. 输入对方的电话号码  010 
+           
+           3. 点击发送按钮
+
+           4. 等待接听
+
+           5. 通话
+
+           ajax的交互模型:
+                1.创建一个ajax对象
+                2.填写地址
+                3.发送给服务器
+                4.等待
+                5.通话
+       */
+
+        var ajax = new XMLHttpRequest; //创建一个ajax对象
+
+        //填写地址。
+        ajax.open('post','php/post.php',true);
+
+        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        //发送给服务器
+        ajax.send('user='+userId.value);
+        
+        //等待
+        ajax.onload = function(){
+            //通话
+            console.log(ajax.responseText);
+        }
+    }
+    
+
+</script>
+</body>
+</html>
