@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    //name=hh&age=18&sex=人妖
+    //
+    // var o = {
+    //     name:'hh',
+    //     age:18,
+    //     sex:'人妖'
+    // } 
+    // var arr = [];
+    // for(var attr in o){
+    //     arr.push(attr + '=' + o[attr]);
+    // }
+
+    // console.log(arr.join('&'));
+
+
+    var str = 'name=hh&age=18&sex=人妖';
+
+    var arr = str.split('&');
+    var o = {};
+    arr.forEach((e)=>{
+        var a2 = e.split('=');
+        o[a2[0]] = a2[1];
+    });
+
+    console.log(o);
+
+
+
+
+
+</script>
+
+</body>
+</html>

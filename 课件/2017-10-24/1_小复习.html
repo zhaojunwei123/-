@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="userId"/>
+<script>
+    /*
+        ajax:异步的js与xml
+
+            前后端数据交互的一种技术
+
+    */
+
+    const txt = document.getElementById('userId');
+    txt.onblur = function(){
+        const ajax = new XMLHttpRequest;
+
+        ajax.open('get','php/get_json.php?user='+encodeURI(txt.value),true);
+
+        ajax.send();
+
+        // ajax.open('post','php/post.php');
+
+        // ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        // ajax.send('user='+txt.value);
+
+        ajax.onload = function(){
+            let data = JSON.parse(ajax.responseText);
+            if(!data.code){
+                alert('注册成功');
+            }else{
+                alert('呵呵');
+            }
+            console.log(data);
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

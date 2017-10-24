@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="userId"/>
+    <ul id="ul"></ul>
+<script>
+    /*
+        ajax:异步的js与xml
+
+            前后端数据交互的一种技术
+
+    */
+
+    const txt = document.getElementById('userId');
+    txt.onblur = function(){
+        const ajax = new XMLHttpRequest;
+
+        ajax.open('get','php/data.xml',true);
+
+        ajax.send();
+
+        ajax.onload = function(){
+            const d = ajax.responseXML; //获取XML数据
+
+            let persons = d.getElementsByTagName('person'); 
+            
+            persons = Array.from(persons);
+
+            persons.forEach((ele,i) => {
+                let li = document.createElement('li');
+
+                li.innerHTML = '我的名字叫'+ele.children[0].innerHTML + '今年'+ele.children[1].innerHTML+'岁,性别:'+ele.children[2].innerHTML+',我想说:'+ele.children[3].innerHTML
+
+                ul.appendChild(li);
+
+            });
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

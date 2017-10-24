@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="userId"/>
+<script src="ajax(4).js"></script>
+<script>
+    var txt = document.getElementById('userId');
+    txt.onblur = function(){
+        // ajax('php/get.php','get','user='+txt.value,function(data){
+        //     alert(data);
+        // });
+
+        // ajax('php/get1.php','get','user='+txt.value,function(data){
+        //     alert(data);
+        // },function(code){
+        //     alert(code)
+        // });
+        
+        //{user:txt.value,pass:123} =>  user=txt.value&pass=123
+        ajax({
+            url:'php/post1.php',
+            method:'post',
+            data:{
+                user:txt.value
+            },
+            dataType:'str',
+            success:function(data){
+                console.log(data);
+            },
+            fail:function(c){
+                alert(c)
+            }
+        });
+    }
+
+
+
+</script>
+</body>
+</html>
