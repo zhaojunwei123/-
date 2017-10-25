@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+<style>
+div{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+}
+</style>
+</head>
+<body>
+    <div id="div1">1</div>
+    <div id="div2">2</div>
+<script>
+    /*
+        http://localhost/2017-10-25/php/2.php?callback=fn&num=number
+    */
+    function fn(arr){
+        alert(arr);
+    }
+    function fn2(arr){
+        console.log('我是div2,字母'+arr);
+    }
+    div1.onclick = function(){
+        let os = document.createElement('script');
+        os.src = 'http://localhost/2017-10-25/php/2.php?callback=fn&num=number';
+        document.getElementsByTagName('head')[0].appendChild(os);
+        os.remove();
+    }
+    div2.onclick = function(){
+        let os = document.createElement('script');
+        os.src = 'http://localhost/2017-10-25/php/2.php?callback=fn2';
+        document.getElementsByTagName('head')[0].appendChild(os);
+        os.remove();
+    }
+
+</script>
+<!-- <script src="file:///C:/xampp/php/www/2017-10-25/php/qq.js"></script> -->
+</body>
+</html>

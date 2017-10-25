@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul">
+
+    </ul>
+<script>
+    /*
+    
+        https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=miaov&cb=fn
+
+        https://sug.so.360.cn/suggest?callback=fn&word=ss
+    
+    
+    */
+    function fn(obj){
+        ul.innerHTML = '';
+        obj.s.forEach((e,i)=>{
+            var li = document.createElement('li');
+
+            li.innerHTML = e;
+
+            ul.append(li);
+        });
+
+    }
+    txt.onkeyup = function(){
+        var os = document.createElement('script');
+        os.src = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${txt.value}&json=1&cb=fn`;
+        document.getElementsByTagName('head')[0].appendChild(os);
+        os.remove();
+    }
+
+</script>
+</body>
+</html>

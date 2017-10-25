@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="post_file.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="上传">
+    </form> -->
+
+    <input type="file" id="f">
+    <input type="button" value="上传" id="btn">
+<script>
+    /*
+        浏览器的js，不能操作本地文件（增删改..）
+
+        上传:
+            传统的上传
+
+    最大优点就是我们可以异步上传一个二进制文件.
+        var f = new FormData();
+        f.append(key,val);
+        ajax.send(f);
+    */
+    
+    btn.onclick = function(){
+        // console.dir(f.files[0]);
+        var ajax = new XMLHttpRequest;
+
+        ajax.open('post','post_file.php');
+
+        var formData = new FormData();
+        
+        formData.append('file',f.files[0]);
+        
+        // console.log(formData);
+        
+        ajax.send(formData);
+        
+        //ajax.send('file='+f.files[0]);
+
+        ajax.onload = function(){
+            console.log(ajax.responseText);
+        }
+
+    }
+    
+</script>
+</body>
+</html>

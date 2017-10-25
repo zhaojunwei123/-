@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" value="小明" id="user">
+    <input type="button" value="查询" id="search">
+    <ul id="ul"></ul>
+<script src="ajax.js"></script>
+<script>
+    var search = document.getElementById('search');
+    search.onclick = function(){
+        ajax({
+            url:'php/ajax.php',
+            data:{
+                user:user.value
+            },
+            success:function(data){
+                if(data.code === 0){
+                    var d = data.data;
+                    ul.innerHTML = `我的名字叫${d.name},年龄为${d.age},
+                    爱好呢是${d.hobby},我的宣言:${d.info}`;   
+                }else{
+                    ul.innerHTML = `${data.data}`;
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

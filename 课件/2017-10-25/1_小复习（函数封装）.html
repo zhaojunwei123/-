@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="user">
+<script>
+    var index = 0;
+    
+    user.onblur = function(){
+        var onOff = true;
+        ajax({
+            data:{
+                user:user.value
+            },
+            url:'php/get_async.php',
+            // url:'php/data.xml',
+            dataType:'str',
+            success:function(data){
+                onOff = false;
+                console.log(data);
+            },
+            asyn:true
+        });
+        if(onOff){
+            index++; 
+        }
+        alert(index);
+    } 
+
+    function ajax(json){
+        var opt = {
+            url:'',
+            method:'get',
+            success:function(){},
+            fail:function(){},
+            dataType:'json',
+            data:{},
+            asyn:true
+        }
+
+        for(var attr in json){
+            opt[attr] = json[attr];
+        }
+
+        var arr = [];
+        for(var attr in opt.data){
+            arr.push(attr + '=' + opt.data[attr]);
+        }
+
+        opt.data = arr.join('&');
+
+        var ajax = new XMLHttpRequest;
+
+        if(opt.method == 'get'){
+            ajax.open('get',opt.url+'?'+opt.data,opt.asyn);
+            ajax.onreadystatechange = fn;
+            ajax.send();
+        }else if(opt.method == 'post'){
+            ajax.open('post',opt.url);
+            ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            ajax.onreadystatechange = fn;
+            ajax.send(opt.data);
+        }
+         function fn(){
+            if(ajax.readyState === 4){
+                if(ajax.status >= 200 && ajax.status <= 207){
+                    if(opt.dataType === 'json'){
+                        opt.success(eval('('+ ajax.responseText +')'));
+                    }else if(opt.dataType === 'xml'){
+                        opt.success(ajax.responseXML);
+                    }else if(opt.dataType === 'str'){
+                        opt.success(ajax.responseText);
+                    }
+                }else{
+                    opt.fail(ajax.status);
+                }
+            }            
+        }
+
+    }   
+
+  
+
+
+</script>
+</body>
+</html>

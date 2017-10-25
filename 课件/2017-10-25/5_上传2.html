@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#loading{
+    width:0;
+    height: 4px;
+    background: skyblue;
+    opacity:1;
+    position: absolute;
+    top:0;
+    transition:.5s;
+}
+</style>
+</head>
+<body>
+   <div id="box">
+        <input type="file" id="f">
+        <input type="button" value="上传" id="btn">
+        <div id="loading"></div>
+   </div>
+<script>
+    /*
+        浏览器的js，不能操作本地文件（增删改..）
+
+        上传:
+            传统的上传
+
+    最大优点就是我们可以异步上传一个二进制文件.
+        var f = new FormData();
+        f.append(key,val);
+        ajax.send(f);
+
+    file控件中的数据是在<input type="file" id="f"> 的files[0]
+
+    ajax.upload.onprogress
+        进行监听数据上传进度的，只要后端收到一次数据就会调用这个函数，每次数据的细节信息都放在事件对象上
+
+        ev.loaded    当前传输的进度
+        ev.total     总大小
+
+
+    */
+    
+    btn.onclick = function(){
+
+        var ajax = new XMLHttpRequest;
+
+        ajax.open('post','post_file.php');
+
+        var formData = new FormData();
+        
+        formData.append('file',f.files[0]);
+
+        ajax.upload.onprogress = function(ev){ 
+            let scale = Math.floor((ev.loaded / ev.total)*100);
+            loading.style.cssText = `transition:.5s;width:${scale}%;opacity:${(100-scale)/100}`;
+            if(scale == 100){
+                loading.style.transition = 0;
+                setTimeout(function() {
+                    loading.style.width = '0';
+                    setTimeout(function(){
+                        loading.style.opacity = '1';
+                        box.style.opacity = 0;
+                        document.body.style.transition = '.5s';
+                        document.body.style.background = 'yellow';
+                    });
+                }, 1000);
+            }
+
+        }
+        // console.dir(ajax);
+
+        ajax.send(formData);
+
+    }
+    
+</script>
+</body>
+</html>
