@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //判断图片有没有，进了onload就有
+    var img = document.createElement('img');
+    img.src = "http:\/\/www.wookmark.com\/images\/thumbs\/661395_wookmark.jpg"
+
+    img.onload = function(){
+        alert('有');
+    }
+    img.onerror = function(){
+        alert('没有');
+    }
+
+
+
+</script>
+</body>
+</html>

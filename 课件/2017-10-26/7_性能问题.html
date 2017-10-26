@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul"></ul>
+<script>
+    //*1141.58203125ms  1179.112060546875ms 1154.951904296875ms
+    //8.9111328125ms   *8.519775390625ms   13.160888671875ms
+    //2.2998046875ms   2.599853515625ms  ****2.130859375ms
+    document.onclick = function(){
+        var html = '';
+        console.time('计时器');
+        for(var i=0;i<1000;i++){
+            //ul.innerHTML += `<li>${i}</li>`;
+            // var li = document.createElement('li');
+            // li.innerHTML = i;
+            // ul.append(li);
+            html += `<li>${i}</li>`;
+        }
+        ul.innerHTML = html;
+        console.timeEnd('计时器');
+    }
+
+</script>
+</body>
+</html>

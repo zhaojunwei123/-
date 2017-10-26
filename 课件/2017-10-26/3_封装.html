@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt"/>
+    <ul id="ul"></ul>
+<script>
+    
+    /*
+        https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=s&json=1&p=3&sid=1459_21104_20927&req=2&csor=1&cb=jQuery11020919820250376338_1508991367126&_=1508991367129
+        callback=fn
+    */
+    txt.onkeyup = function(){
+        jsonp({
+            // url:'http://localhost:99/2017-10-26/3.get.php',
+            url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+            data:{
+                cb:'fn',
+                wd:txt.value
+            },
+            success:function(data){
+                console.log(data);
+                ul.innerHTML = '';
+                // data.suggestKeycords.forEach((e,i)=>{
+                //     ul.innerHTML += `<li>${e}</li>`
+                // });
+            }
+        });
+    }
+
+    function jsonp(json){
+        //初始化
+        var opt = {
+            url:'',
+            data:{},
+            success:function(){}
+        }
+        //有配置走配置，没配置走默认
+        for(var attr in json){
+            opt[attr] = json[attr];
+        }
+
+        //把对象转成字符串
+        var arr = [];
+
+        for(var attr in opt.data){
+            arr.push(attr + '=' + opt.data[attr]) ;  //aaa=xx&xxx=xx
+        }
+
+        /*
+            因为jsonp的函数需要挂在全局，而fn为局部的，
+            要让他在全局调用，那么把这个函数挂在window下
+            
+            但是函数名不可能都叫fn，所以传了有个可变的值。opt.data.callback
+        */
+        window[opt.data.cb] = function(obj){
+            opt.success(obj);
+        }
+        opt.data = arr.join('&');
+
+        var os = document.createElement('script');
+        os.src = opt.url + '?' +  opt.data;
+        document.getElementsByTagName('head')[0].append(os);
+        os.remove();
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

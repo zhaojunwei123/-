@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt"/>
+    <ul id="ul"></ul>
+<!-- <script src="qq.txt"></script> -->
+<script>
+    /*
+        跨域（不同源）：不同协议、端口、域名（ip）
+
+        1.数据要为函数名 + 括号
+
+        2.必须在*全局*下定义一个函数来接收数据
+
+        3.在需要数据的时候创建一个script标签,引入接口，获取数据
+      
+        ajax的数据jsonp是只能看，拿不到的（除非后端做下处理）。
+
+
+    */
+// window.onload = function(){
+    function fn(obj){
+        ul.innerHTML = '';
+
+        obj.suggestKeycords.forEach((e,i)=>{
+            ul.innerHTML += `<li>${e}</li>`
+        });
+    }
+
+    // console.log(a);
+    txt.onkeyup = function(){
+       
+        var os = document.createElement('script');
+        //http://localhost:99/2017-10-26/3.get.php?callback=fn&query=mao
+        os.src = 'http://localhost:99/2017-10-26/3.get.php?callback=fn&query='+txt.value;
+
+        document.getElementsByTagName('head')[0].append(os);
+        os.remove();
+
+        // var ajax = new XMLHttpRequest;
+        // ajax.open('get','3.get.php');
+        // ajax.send();
+
+        // ajax.onload = function(){
+        //     console.log(ajax.responseText);
+        // }
+    };
+// }
+
+// fn();
+
+
+
+</script>
+</body>
+</html>

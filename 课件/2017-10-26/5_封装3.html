@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt"/>
+    <ul id="ul"></ul>
+<script src="jsonp_1.0.js"></script>
+<script>
+
+    // window.fn1 = function(){
+    //     alert('第一次');
+    // }
+
+    // window.fn1 = function(){
+    //     alert('第二次');
+    // }
+
+    // fn1();
+    
+    txt.onkeyup = function(){
+        jsonp({
+            url:'http://localhost:99/2017-10-26/3.get.php',
+            data:{
+                query:txt.value
+            },
+            // callback:'callback',
+            // fnName:'fn',
+            success:function(obj){
+                ul.innerHTML = '';
+                obj.suggestKeycords.forEach((e,i)=>{
+                    ul.innerHTML += `<li>${e}</li>`
+                });
+            },
+            fail:function(){
+                alert('请检查网络');
+            }
+        })
+    }
+
+
+
+
+</script>
+</body>
+</html>
