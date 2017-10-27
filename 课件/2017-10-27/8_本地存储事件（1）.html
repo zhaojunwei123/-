@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+  document.onclick = function(){
+      localStorage.setItem('num','1');
+  }
+   window.addEventListener('storage',function(){
+        console.log('第一个页面触发了');
+   });
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        cookie:
+            其实是后端的技术，用来记录匹配后端的sessionID的
+            从而保证用户只要在当前浏览器访问页面，登录信息不会
+            被丢失。
+
+        cookie是在服务器下运行的。
+
+        前端使用一般用来数据存储（配合后端进行一些用户优化）
+
+       设置cookie
+            **每个域名**下一般就多少条（多少个、多少k）
+
+            document.cookie = 'key=value';
+
+        生命周期:
+            默认的生命周期就是当前的浏览器彻底关闭，生命结束
+        
+            设置生命周期:
+
+
+
+
+    */
+
+    // document.cookie = 'name=nizp123';
+
+    // let d = new Date;
+    // d.setDate(d.getDate()+1);
+    // document.cookie = 'name1=hehe;expires='+d;
+    // console.log(document.cookie)
+
+
+    function setCookie(key,val,time){
+        if( time ){
+            var d = new Date();
+            d.setDate(d.getDate()+time);
+            document.cookie = key+'='+val+';expires='+d;
+        }else{
+            document.cookie = key+'='+val;
+        }
+    }
+
+    // setCookie('name','haha',15);
+
+    
+
+
+</script>
+</body>
+</html>

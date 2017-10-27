@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<ul id="ul">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script>
+	
+	const num = 200;
+	
+	//地址=》内存地址
+	const arr = [];
+	const arr2 = arr;
+	arr.push(20);
+	var lis = document.querySelectorAll('#ul li');
+	var arr3 = Array.prototype.slice.call(lis);
+	
+	console.log(arr3);
+	Array.prototype.slice = function(start,end){
+		var arr = new Array();
+		var start = start || 0;
+		var end = end || this.length;
+		for (i=start ; i<end ;i++) {
+			arr.push(this[i])
+		}
+		return arr;
+	}
+	
+	
+</script>
+</html>

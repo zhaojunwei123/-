@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <img width="400" src="http://www.wookmark.com/images/original/661395_wookmark.jpg">
+<script>
+    /*
+        http://www.wookmark.com/images/original/661395_wookmark.jpg
+
+        window.load  当页面的所有资源加载完成时触发
+
+        DOMContentLoaded
+            DOM加载完成时触发。
+
+        开发的时候尽量使用DOMContentLoaded
+
+
+    */
+
+    // window.onload = function(){
+    //     alert(1);
+    // }
+
+    document.addEventListener('DOMContentLoaded',function(){
+        alert(1);
+    });
+</script>
+</body>
+</html>

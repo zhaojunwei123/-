@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    /*
+       *** 如果要存储对象类型的数据，那么浏览器默认会调用toSting
+        [object Object];
+
+        所以要把对象转成字符串：
+            JSON.stringify();
+
+        对象 + 字符串 会调用toSting:
+            var o = {"name":"mazhi"}
+            o + ''
+            "[object Object]"
+
+        
+    */
+    
+    function setCookie(key,val,time){
+        if( time ){
+            var d = new Date();
+            d.setDate(d.getDate()+time);
+           
+            document.cookie = key+'='+val+';expires='+d;
+        }else{
+            document.cookie = key+'='+val;
+        }
+    }
+
+    function getCookie(key){
+        let cookieArr = document.cookie.split('; ');
+        let  temp = '';
+        cookieArr.forEach((e)=>{
+            let arr = e.split('='); 
+            if(arr[0] === key){
+                temp = arr[1];
+            }
+        });
+        return temp?temp:null;
+    }
+
+    function removeCookie(key,val){
+        setCookie(key,val,-1);
+    }
+
+    setCookie('data',JSON.stringify({"name":"马智"}))
+
+    console.log(JSON.parse(getCookie('data')));
+
+
+</script>
+</body>
+</html>
