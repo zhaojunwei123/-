@@ -1,0 +1,7 @@
+里面有webpack，babel，自动化构建工具
+
+把ES6转成ES5的一个工具，如果不用，
+
+ES6的一些语法就在浏览器中运行不了
+
+请参考webpack.config.js

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="user">
+    <input type="text" id="pass">
+    <input type="button" value="注册" id="btn"/>
+    <input type="button" value="登录" id="btn2"/>
+<script src="ajax.js"></script>
+<script>
+    btn.onclick = function(){
+        ajax({
+            url:'http://localhost',
+            data:{
+                act:'add',
+                user:user.value,
+                pass:pass.value
+            },
+            success:function(data){
+                if(data.code == 0){
+                    user.style.border = '1px solid green';
+                }else if(data.code == 1){
+                    user.style.border = '1px solid red';
+                }
+
+                console.log(data);
+            }
+        })
+    };
+
+    btn2.onclick = function(){
+        ajax({
+            url:'http://localhost/user',
+            method:'post',
+            data:{
+                act:'login',
+                user:user.value,
+                pass:pass.value.trim()
+            },
+            success:function(data){
+                console.log(data);
+            }
+        });
+    }
+
+</script>    
+</body>
+</html>

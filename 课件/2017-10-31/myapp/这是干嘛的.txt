@@ -1,0 +1,14 @@
+这个是express - node框架，简化node的步骤
+
+class App extends Component {
+
+	constructor(){
+		super();
+		this.state = {}
+	}
+	render(){
+		return (
+			<div></div>
+		)
+	}
+}
