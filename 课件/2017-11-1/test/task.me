@@ -1,0 +1,94 @@
+1. 把项目运行起来
+2. 把 一下 的问题理顺
+
+
+关于 .babelrc 这个配置文件 
+    干什么的
+babel API的配置选项，就是告诉 babel，怎么运行
+    什么时候会被使用
+使用 babel 编译文件的时候，就会去查看，babelrc，根据 .babelrc 的配置来做相应的操作
+    如何配置 预设和插件
+    presets:[]，
+    plugins:[]
+关于 babel
+    干什么的
+把代码编译成ES5代码的工具
+
+    如何在 cli 使用
+就是在命令中使用babel命令
+
+    如何在 webpack 使用
+使用babel-loader
+
+    基于什么运行的 (插件)
+插件
+    
+    预设是什么 (插件的集合)
+插件的集合
+
+关于 webpack 的
+
+    干什么的
+模块打包
+使用loader预处理模块
+
+    入口是什么意思, 如何配置
+项目的入口模块
+
+    输出是什么意思, 如何配置(文件名, 输出路径)
+webpack的打包结果
+
+    什么是 loader,
+webpack 使用 loader处理模块内容
+
+    在什么情况下会让 loader 起作用
+当某一个rule被匹配到之后
+    如何在 webpack 使用 babel-loader
+看配置
+关于 npm 的
+
+   干什么用的
+管理项目的依赖
+
+    关于package.json的文件
+        如何生成
+npm init 一直回车
+       
+        什么情况下会被使用
+npm i 安装项目依赖的时候
+查看里面声明了什么命令
+查看项目依赖的时候
+想查看项目的时候
+  
+        *如何在里面声明命令
+            在里面声明命令的好处
+很方便的描述出和本项目相关的一些命令操作
+
+    如何安装依赖 (声明为生产还是开发)
+npm i -S package 生产依赖 
+npm i -D package 开发依赖
+
+   
+关于模块化语法         
+    es6
+        import 'f.js'
+让这个模块运行 但不需要接收它暴露的接口
+        import a from './ds.js'
+引入模块的默认导出，让a的变量接收ds.js的默认导出
+        import a,{b,c} from './ds.js'
+让a的变量接收ds.js的默认导出
+接收它的默认导出b c
+        import a,{b as ccd,c} from './ds.js'
+让a的变量接收ds.js的默认导出
+接收它的默认导出b c, 并把b重命名为ccd
+        export
+        export default
+
+    commonJS
+        require('./a.js')
+        module.exports
+模块接收的是module.exports的导出
+        exports
+expors初始默认指向module.exports
+如果这个指向被重新赋值，就会断掉和module.exports的联系
+不能直接给expors赋值
