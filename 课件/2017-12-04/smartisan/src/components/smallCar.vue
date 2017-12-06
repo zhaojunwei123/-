@@ -14,36 +14,44 @@
         <div class="full" v-show="shops.length">
           <div class="nav-cart-items">
             <ul>
-              <li class="clear">
+              <li class="clear" v-for="item in shops">
                 <div class="cart-item js-cart-item cart-item-sell">
                   <div class="cart-item-inner">
                     <div class="item-thumb">
-                      <img src="../assets/img/goods/1.png">
+                      <img :src="item.shop_info.ali_image">
                     </div>
                     <div class="item-desc">
                       <div class="cart-cell">
                         <h4>
-                          <a href="#/item/100027401">坚果 Pro 钢化玻璃保护膜（前屏用）</a>
+                          <a href="#/item/100027401">{{item.shop_info.title}}</a>
                         </h4>
                         <p class="attrs">
-                          <span>透明</span>
+                          <span v-for="spec in item.shop_info.spec_json">{{spec.show_name}}</span>
                         </p>
                         <h6>
-                          <span class="price-icon">¥</span><span class="price-num">49</span><span class="item-num">x 1</span>
+                          <span class="price-icon">¥</span>
+                          <span class="price-num">{{item.price}}</span>
+                          <span class="item-num">x {{item.count}}</span>
                         </h6>
                       </div>
                     </div>
-                    <div class="del-btn">删除</div>
+                    <div class="del-btn" @click="remove(item.id)">删除</div>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
           <div class="nav-cart-total">
-            <p>共 <strong class="ng-binding">1</strong> 件商品</p>
-            <h5>合计：<span class="price-icon">¥</span><span class="price-num ng-binding" ng-bind="cartMenu.totalPrice">49</span></h5>
+            <p>共 <strong class="ng-binding">{{totalCountAndMoney.totalCount}}</strong> 件商品</p>
+            <h5>合计：<span class="price-icon">¥</span>
+              <span class="price-num ng-binding" ng-bind="cartMenu.totalPrice">
+                {{totalCountAndMoney.totalMoney}}
+              </span>
+            </h5>
             <h6>
-              <a ng-href="http://www.smartisan.com/shop/#/cart" class="nav-cart-btn" href="http://www.smartisan.com/shop/#/cart">去购物车</a>
+              <router-link class="nav-cart-btn" :to="{name:'Car'}">
+                去购物车
+              </router-link>
             </h6>
           </div>
         </div>
@@ -52,10 +60,20 @@
   </div>
 </template>
 <script>
+
   export default {
     computed: {
       shops () {
         return this.$store.state.carShops
+      },
+      totalCountAndMoney () {
+        // 从getter中取值
+        return this.$store.getters.totalCountAndMoney
+      }
+    },
+    methods: {
+      remove (skuId) {
+        this.$store.dispatch('removeCountAction', {skuId})
       }
     }
   }
