@@ -25,7 +25,7 @@
       </div>
       <div class="item-btns clearfix">
         <span class="item-gray-btn">
-          <a href="javascript:;" target="_blank">查看详情</a> 
+          <router-link :to="detailPath">查看详情</router-link>
         </span>
         <span 
           class="item-blue-btn" 
@@ -45,6 +45,7 @@
 </template>
 <script>
 import {addCarCount,getAddCarData} from '@/getData/method'
+
   export default {
     data () {
       return  {
@@ -58,6 +59,16 @@ import {addCarCount,getAddCarData} from '@/getData/method'
       },
       sku_list () {
         return this.shopItem.sku_list
+      },
+      detailPath () {  //详情的地址
+      // shop/detail/1000360?id=100036001
+      // 商品的大id和商品小sku_id
+        return {
+          path: '/shop/detail/'+this.shopItem.id,
+          query: {
+            id: this.itemInfo.sku_id
+          }
+        }
       }
     },
     props: {
@@ -85,7 +96,8 @@ import {addCarCount,getAddCarData} from '@/getData/method'
     if(item){
       console.log(item)
       if(item.count == item.shop_info.limit_num){
-        alert('商品已达到最大可购买数量，无法继续添加')
+        // alert('商品已达到最大可购买数量，无法继续添加')
+        this.$emit('count')
         return;
       }
     }
